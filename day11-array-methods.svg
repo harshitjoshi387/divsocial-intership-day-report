@@ -1,0 +1,39 @@
+<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="700" height="300" fill="#f8fafc" rx="16" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="350" y="32" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="bold">Array Methods</text>
+
+  <!-- Original array -->
+  <text x="40" y="65" fill="#334155" font-size="13" font-weight="bold">Original: [10, 25, 3, 47, 8]</text>
+  <g font-size="13" fill="white" font-weight="bold">
+    <rect x="40" y="75" width="55" height="40" rx="6" fill="#64748b"/><text x="67" y="100" text-anchor="middle">10</text>
+    <rect x="105" y="75" width="55" height="40" rx="6" fill="#64748b"/><text x="132" y="100" text-anchor="middle">25</text>
+    <rect x="170" y="75" width="55" height="40" rx="6" fill="#64748b"/><text x="197" y="100" text-anchor="middle">3</text>
+    <rect x="235" y="75" width="55" height="40" rx="6" fill="#64748b"/><text x="262" y="100" text-anchor="middle">47</text>
+    <rect x="300" y="75" width="55" height="40" rx="6" fill="#64748b"/><text x="327" y="100" text-anchor="middle">8</text>
+  </g>
+
+  <!-- find -->
+  <text x="40" y="150" fill="#0369a1" font-size="13" font-weight="bold">.find(n =&gt; n &gt; 20) → 25</text>
+  <rect x="40" y="160" width="55" height="35" rx="6" fill="#e2e8f0"/>
+  <rect x="105" y="160" width="55" height="35" rx="6" fill="#0ea5e9"/><text x="132" y="183" text-anchor="middle" fill="white" font-size="13" font-weight="bold">25</text>
+  <rect x="170" y="160" width="55" height="35" rx="6" fill="#e2e8f0"/>
+  <rect x="235" y="160" width="55" height="35" rx="6" fill="#e2e8f0"/>
+  <rect x="300" y="160" width="55" height="35" rx="6" fill="#e2e8f0"/>
+
+  <!-- sort -->
+  <text x="420" y="65" fill="#059669" font-size="13" font-weight="bold">.sort((a,b)=&gt;a-b)</text>
+  <g font-size="13" fill="white" font-weight="bold">
+    <rect x="420" y="75" width="55" height="40" rx="6" fill="#10b981"/><text x="447" y="100" text-anchor="middle">3</text>
+    <rect x="485" y="75" width="55" height="40" rx="6" fill="#10b981"/><text x="512" y="100" text-anchor="middle">8</text>
+    <rect x="550" y="75" width="55" height="40" rx="6" fill="#10b981"/><text x="577" y="100" text-anchor="middle">10</text>
+  </g>
+  <g font-size="13" fill="white" font-weight="bold">
+    <rect x="420" y="120" width="55" height="35" rx="6" fill="#10b981"/><text x="447" y="143" text-anchor="middle">25</text>
+    <rect x="485" y="120" width="55" height="35" rx="6" fill="#10b981"/><text x="512" y="143" text-anchor="middle">47</text>
+  </g>
+
+  <!-- forEach -->
+  <text x="40" y="235" fill="#b45309" font-size="13" font-weight="bold">.forEach(n =&gt; console.log(n)) — runs for every element</text>
+  <rect x="40" y="245" width="620" height="35" rx="8" fill="#0f172a"/>
+  <text x="55" y="268" fill="#4ade80" font-size="12" font-family="monospace">10 → 25 → 3 → 47 → 8   (logged one by one)</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="500" height="420" fill="#ffffff" rx="16" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="250" y="30" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="bold">CSS Box Model</text>
+
+  <!-- Margin -->
+  <rect x="30" y="55" width="440" height="330" fill="#fde68a" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="45" y="75" fill="#92400e" font-size="13" font-weight="bold">margin</text>
+
+  <!-- Border -->
+  <rect x="70" y="90" width="360" height="260" fill="#fca5a5" stroke="#ef4444" stroke-width="3"/>
+  <text x="85" y="110" fill="#7f1d1d" font-size="13" font-weight="bold">border</text>
+
+  <!-- Padding -->
+  <rect x="105" y="125" width="290" height="190" fill="#93c5fd" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="120" y="145" fill="#1e3a8a" font-size="13" font-weight="bold">padding</text>
+
+  <!-- Content -->
+  <rect x="150" y="165" width="200" height="110" fill="#34d399" stroke="#059669" stroke-width="2"/>
+  <text x="250" y="225" text-anchor="middle" fill="#064e3b" font-size="15" font-weight="bold">content</text>
+
+  <text x="250" y="405" text-anchor="middle" fill="#64748b" font-size="12">width/height apply to content; padding &amp; border add to total box size</text>
+</svg>

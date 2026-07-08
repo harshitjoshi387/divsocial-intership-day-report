@@ -1,0 +1,28 @@
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="800" height="320" fill="#f8fafc" rx="16" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="400" y="32" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="bold">Flexbox (1D) vs Grid (2D)</text>
+
+  <!-- Flexbox panel -->
+  <rect x="30" y="55" width="350" height="230" rx="10" fill="#ecfeff" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="205" y="80" text-anchor="middle" fill="#0369a1" font-size="15" font-weight="bold">display: flex</text>
+  <g fill="#0ea5e9">
+    <rect x="50" y="150" width="70" height="70" rx="6"/>
+    <rect x="130" y="150" width="70" height="70" rx="6"/>
+    <rect x="210" y="150" width="70" height="70" rx="6"/>
+    <rect x="290" y="150" width="70" height="70" rx="6"/>
+  </g>
+  <text x="205" y="255" text-anchor="middle" fill="#075985" font-size="12">Single row / column direction</text>
+
+  <!-- Grid panel -->
+  <rect x="420" y="55" width="350" height="230" rx="10" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="595" y="80" text-anchor="middle" fill="#5b21b6" font-size="15" font-weight="bold">display: grid</text>
+  <g fill="#8b5cf6">
+    <rect x="440" y="100" width="90" height="70" rx="6"/>
+    <rect x="540" y="100" width="90" height="70" rx="6"/>
+    <rect x="640" y="100" width="90" height="70" rx="6"/>
+    <rect x="440" y="180" width="90" height="70" rx="6"/>
+    <rect x="540" y="180" width="90" height="70" rx="6"/>
+    <rect x="640" y="180" width="90" height="70" rx="6"/>
+  </g>
+  <text x="595" y="270" text-anchor="middle" fill="#4c1d95" font-size="12">Rows AND columns together</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="600" height="420" fill="#f8fafc" rx="16" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="300" y="30" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="bold">HTML5 Semantic Layout</text>
+
+  <rect x="40" y="50" width="520" height="55" rx="8" fill="#0ea5e9"/>
+  <text x="300" y="83" text-anchor="middle" fill="white" font-size="15" font-weight="bold">&lt;header&gt;</text>
+
+  <rect x="40" y="115" width="520" height="40" rx="8" fill="#14b8a6"/>
+  <text x="300" y="140" text-anchor="middle" fill="white" font-size="15" font-weight="bold">&lt;nav&gt;</text>
+
+  <rect x="40" y="165" width="360" height="180" rx="8" fill="#f59e0b" opacity="0.9"/>
+  <text x="220" y="190" text-anchor="middle" fill="white" font-size="15" font-weight="bold">&lt;main&gt;</text>
+
+  <rect x="60" y="205" width="320" height="60" rx="6" fill="#fbbf24"/>
+  <text x="220" y="240" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="bold">&lt;section&gt; &lt;article&gt;</text>
+
+  <rect x="60" y="275" width="320" height="55" rx="6" fill="#fbbf24"/>
+  <text x="220" y="307" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="bold">&lt;figure&gt; &lt;figcaption&gt;</text>
+
+  <rect x="410" y="165" width="150" height="180" rx="8" fill="#8b5cf6"/>
+  <text x="485" y="260" text-anchor="middle" fill="white" font-size="15" font-weight="bold">&lt;aside&gt;</text>
+
+  <rect x="40" y="355" width="520" height="45" rx="8" fill="#ef4444"/>
+  <text x="300" y="382" text-anchor="middle" fill="white" font-size="15" font-weight="bold">&lt;footer&gt;</text>
+</svg>

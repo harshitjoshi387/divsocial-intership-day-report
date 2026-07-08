@@ -1,0 +1,35 @@
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="300" fill="#1e1e2e" rx="16"/>
+  <text x="450" y="35" text-anchor="middle" fill="#f8fafc" font-size="20" font-weight="bold">Browser DevTools — Key Panels</text>
+
+  <g font-size="13" fill="#f8fafc">
+    <rect x="30" y="60" width="160" height="100" rx="10" fill="#0ea5e9"/>
+    <text x="110" y="100" text-anchor="middle" font-weight="bold">Elements</text>
+    <text x="110" y="120" text-anchor="middle" font-size="10">Inspect &amp; edit</text>
+    <text x="110" y="135" text-anchor="middle" font-size="10">HTML / CSS live</text>
+
+    <rect x="210" y="60" width="160" height="100" rx="10" fill="#14b8a6"/>
+    <text x="290" y="100" text-anchor="middle" font-weight="bold">Console</text>
+    <text x="290" y="120" text-anchor="middle" font-size="10">Run JS,</text>
+    <text x="290" y="135" text-anchor="middle" font-size="10">view logs/errors</text>
+
+    <rect x="390" y="60" width="160" height="100" rx="10" fill="#f59e0b"/>
+    <text x="470" y="100" text-anchor="middle" font-weight="bold">Network</text>
+    <text x="470" y="120" text-anchor="middle" font-size="10">Requests, status</text>
+    <text x="470" y="135" text-anchor="middle" font-size="10">codes, timing</text>
+
+    <rect x="570" y="60" width="160" height="100" rx="10" fill="#ef4444"/>
+    <text x="650" y="100" text-anchor="middle" font-weight="bold">Sources</text>
+    <text x="650" y="120" text-anchor="middle" font-size="10">Breakpoints,</text>
+    <text x="650" y="135" text-anchor="middle" font-size="10">step through JS</text>
+
+    <rect x="750" y="60" width="130" height="100" rx="10" fill="#8b5cf6"/>
+    <text x="815" y="100" text-anchor="middle" font-weight="bold">Application</text>
+    <text x="815" y="120" text-anchor="middle" font-size="10">Cookies,</text>
+    <text x="815" y="135" text-anchor="middle" font-size="10">localStorage</text>
+  </g>
+
+  <text x="450" y="210" text-anchor="middle" fill="#94a3b8" font-size="13">Open with F12 or Ctrl+Shift+I (Cmd+Opt+I on Mac)</text>
+  <rect x="250" y="230" width="400" height="45" rx="8" fill="#0f172a" stroke="#334155"/>
+  <text x="450" y="257" text-anchor="middle" fill="#4ade80" font-size="13" font-family="monospace">console.log("debug:", myVariable);</text>
+</svg>

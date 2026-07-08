@@ -1,0 +1,34 @@
+<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="700" height="260" fill="#f8fafc" rx="16" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="350" y="35" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="bold">TCP 3-Way Handshake</text>
+
+  <!-- Client & Server labels -->
+  <rect x="60" y="60" width="120" height="40" rx="8" fill="#0ea5e9"/>
+  <text x="120" y="85" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Client</text>
+
+  <rect x="520" y="60" width="120" height="40" rx="8" fill="#14b8a6"/>
+  <text x="580" y="85" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Server</text>
+
+  <line x1="120" y1="100" x2="120" y2="230" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="580" y1="100" x2="580" y2="230" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- SYN -->
+  <line x1="120" y1="130" x2="580" y2="130" stroke="#0f172a" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="350" y="122" text-anchor="middle" font-size="13" fill="#0f172a" font-weight="bold">SYN →</text>
+
+  <!-- SYN-ACK -->
+  <line x1="580" y1="165" x2="120" y2="165" stroke="#0f172a" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="350" y="157" text-anchor="middle" font-size="13" fill="#0f172a" font-weight="bold">← SYN-ACK</text>
+
+  <!-- ACK -->
+  <line x1="120" y1="200" x2="580" y2="200" stroke="#0f172a" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="350" y="192" text-anchor="middle" font-size="13" fill="#0f172a" font-weight="bold">ACK →</text>
+
+  <text x="350" y="240" text-anchor="middle" fill="#64748b" font-size="12">Connection established — data transfer can begin</text>
+
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0f172a"/>
+    </marker>
+  </defs>
+</svg>
