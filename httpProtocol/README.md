@@ -8,8 +8,7 @@ This repository contains my notes on the **HTTP Protocol**.
 
 ## Topics Covered
 
-- What is HTTP?
-- Client-Server Architecture
+
 - HTTP Methods (GET, POST, PUT, DELETE)
 - Status Codes
 - Request & Response
