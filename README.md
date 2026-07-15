@@ -532,7 +532,7 @@ async function getUsers() {
 
 Explored the **Application** tab in Chrome/Brave DevTools — this is where all client-side storage mechanisms of a website live (Manifest, Service Workers, Storage, Cookies, Cache, etc.).
 
-![DevTools Application Tab](./day13-application-tab.svg)
+![DevTools Application Tab](./day13-application-tab.png)
 
 ### Console (Recap)
 The **Console** panel is used to run JS snippets live, inspect logged values, and read errors/warnings thrown by the page — the fastest way to sanity-check what a script is doing without adding UI.
@@ -637,7 +637,7 @@ request.onsuccess = (event) => {
 
 Set up the backend of the **ResumeFlow** project using Node.js + Express, and learned the core tooling around package management.
 
-![Node/Express Backend Setup](./day14-npm-express.svg)
+![Node/Express Backend Setup](./day14-npm-express.png)
 
 ### ✅ npm (Node Package Manager)
 `npm` is the default package manager for Node.js — it installs, updates, and manages third-party libraries.
