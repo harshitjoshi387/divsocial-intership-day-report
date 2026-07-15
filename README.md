@@ -7,6 +7,7 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-In%20Progress-brightgreen?style=for-the-badge)
 
@@ -16,7 +17,7 @@
 
 ## 📌 About This Repository
 
-This repository documents my **daily progress during the DivSocial Internship**. Each day covers a specific topic — from how the web works under the hood, to browser debugging, to building and styling a resume with HTML/CSS, to JavaScript fundamentals and basic backend/API concepts. Diagrams are included to make each concept easier to visualize and revise.
+This repository documents my **daily progress during the DivSocial Internship**. Each day covers a specific topic — from how the web works under the hood, to browser debugging, to building and styling a resume with HTML/CSS, to JavaScript fundamentals, browser storage, and basic backend/Node.js concepts. Diagrams are included to make each concept easier to visualize and revise.
 
 ## 📅 Table of Contents
 
@@ -34,6 +35,8 @@ This repository documents my **daily progress during the DivSocial Internship**.
 | [Day 10](#day-10--functions-in-js) | 🔧 Functions in JS |
 | [Day 11](#day-11--arrays--array-methods) | 📚 Arrays & Array Methods |
 | [Day 12](#day-12--apis--basic-backend-concepts) | 🌍 APIs & Basic Backend Concepts |
+| [Day 13 (13 July)](#day-13-13-july--devtools-application-tab-storage--cookies) | 🗄️ DevTools Application Tab, Storage & Cookies |
+| [Day 14 (15 July)](#day-14-15-july--npm-nodejs--express-basics) | 📦 npm, Node.js & Express Basics |
 
 ---
 
@@ -525,15 +528,226 @@ async function getUsers() {
 
 ---
 
+## Day 13 (13 July) — DevTools Application Tab, Storage & Cookies
+
+Explored the **Application** tab in Chrome/Brave DevTools — this is where all client-side storage mechanisms of a website live (Manifest, Service Workers, Storage, Cookies, Cache, etc.).
+
+![DevTools Application Tab](./day13-application-tab.svg)
+
+### Console (Recap)
+The **Console** panel is used to run JS snippets live, inspect logged values, and read errors/warnings thrown by the page — the fastest way to sanity-check what a script is doing without adding UI.
+
+### Application Tab
+Found under DevTools → **Application**. Key sub-sections:
+
+| Section | What it stores/shows |
+|---------|------------------------|
+| **Manifest** | The web app manifest (`manifest.json`) — defines app name, icons, theme color for installable PWAs. Shows "No manifest detected" if the site isn't a PWA. |
+| **Service Workers** | Background scripts that enable offline support, push notifications, caching |
+| **Storage** | Overview of Local Storage, Session Storage, IndexedDB, Cookies, Cache Storage — with a quota usage breakdown |
+| **Background Services** | Back/forward cache, bounce tracking mitigation, notifications, push messaging |
+
+### Storage — The 4 Main Types
+
+![Storage Types Comparison](./day13-storage-comparison.svg)
+
+| Feature | Cookies | Local Storage | Session Storage | IndexedDB |
+|---------|---------|----------------|------------------|-----------|
+| **Capacity** | ~4KB | ~5–10MB | ~5–10MB | Very large (100s of MB+) |
+| **Sent to server?** | ✅ Yes, with every HTTP request | ❌ No | ❌ No | ❌ No |
+| **Expiry** | Set manually (or session-based) | Never (until cleared) | On tab/browser close | Never (until cleared) |
+| **Accessible from** | Client + Server | Client (JS) only | Client (JS) only | Client (JS) only |
+| **Data type** | String only | String only | String only | Structured objects (key-value, indexed) |
+| **Best for** | Auth tokens, session IDs | User preferences, theme, tokens | Per-tab form data, wizard steps | Offline apps, large structured datasets |
+
+### Cookies
+A **cookie** is a small piece of data (`name=value`) that the server asks the browser to store, and the browser sends back on every subsequent request to that domain.
+
+```http
+Set-Cookie: sessionId=abc123; Max-Age=3600; Path=/; Secure; HttpOnly; SameSite=Strict
+```
+
+Common attributes:
+- `Expires` / `Max-Age` — controls lifetime
+- `Path` / `Domain` — scope of the cookie
+- `Secure` — only sent over HTTPS
+- `HttpOnly` — not accessible via JS (`document.cookie`), protects against XSS
+- `SameSite` — controls cross-site sending (Strict / Lax / None)
+
+### HTTP vs HTTPS
+
+| | HTTP | HTTPS |
+|---|------|-------|
+| **Full form** | HyperText Transfer Protocol | HyperText Transfer Protocol **Secure** |
+| **Encryption** | ❌ None — data sent in plain text | ✅ Encrypted via TLS/SSL |
+| **Port** | 80 | 443 |
+| **Data safety** | Vulnerable to eavesdropping/tampering | Protected against man-in-the-middle attacks |
+| **SEO / Trust** | Browsers flag as "Not Secure" | Padlock icon shown, preferred by browsers & Google |
+
+> 🔗 Connects back to **Day 1** — the **TLS** handshake is exactly what upgrades a plain HTTP connection into HTTPS.
+
+### Persistent vs Non-Persistent Cookies
+
+| | Persistent Cookie | Non-Persistent (Session) Cookie |
+|---|---------------------|-----------------------------------|
+| **Expiry attribute** | Has `Expires`/`Max-Age` set | No expiry set |
+| **Lifetime** | Survives browser restarts, until expiry date | Deleted the moment the browser closes |
+| **Use case** | "Remember me", saved login, preferences | Temporary session/auth state |
+
+### Local Storage
+Key-value storage, **scoped per origin**, persists even after the browser is closed and reopened.
+
+```js
+localStorage.setItem("theme", "dark");
+localStorage.getItem("theme");     // "dark"
+localStorage.removeItem("theme");
+localStorage.clear();              // wipes everything for this origin
+```
+
+### Session Storage
+Same API as Local Storage, but **scoped per tab** — data is wiped as soon as that tab is closed.
+
+```js
+sessionStorage.setItem("step", "2");
+sessionStorage.getItem("step");    // "2"
+sessionStorage.clear();
+```
+
+### IndexedDB
+A low-level, **asynchronous, client-side NoSQL database** built into the browser — used when you need to store large amounts of structured data (objects, files, blobs) rather than simple strings.
+
+```js
+const request = indexedDB.open("MyDatabase", 1);
+
+request.onupgradeneeded = (event) => {
+  const db = event.target.result;
+  db.createObjectStore("users", { keyPath: "id" });
+};
+
+request.onsuccess = (event) => {
+  const db = event.target.result;
+  const tx = db.transaction("users", "readwrite");
+  tx.objectStore("users").add({ id: 1, name: "Divyansh" });
+};
+```
+
+---
+
+## Day 14 (15 July) — npm, Node.js & Express Basics
+
+Set up the backend of the **ResumeFlow** project using Node.js + Express, and learned the core tooling around package management.
+
+![Node/Express Backend Setup](./day14-npm-express.svg)
+
+### ✅ npm (Node Package Manager)
+`npm` is the default package manager for Node.js — it installs, updates, and manages third-party libraries.
+
+```bash
+npm init -y              # creates a package.json with defaults
+npm install express       # installs a package + adds it to dependencies
+npm install nodemon --save-dev   # installs as a dev-only dependency
+npm uninstall <package>   # removes a package
+```
+
+### ✅ node_modules
+The folder where **all installed packages (and their dependencies)** physically live. It's auto-generated by `npm install` and should **never be committed to Git** — hence it's always added to `.gitignore`.
+
+### ✅ package.json
+The manifest file of a Node.js project — describes the project and lists its dependencies.
+
+```json
+{
+  "name": "resumeflow-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
+```
+
+### ✅ package-lock.json
+Auto-generated alongside `package.json`. It locks the **exact resolved version** of every package (and sub-dependency) that was installed, so every teammate/environment gets the **identical dependency tree** — preventing "works on my machine" bugs. Unlike `package.json`, it **should** be committed to Git.
+
+### ✅ Semantic Versioning (Major.Minor.Patch)
+
+```
+4    .  18   .   2
+▲       ▲        ▲
+MAJOR   MINOR    PATCH
+```
+
+| Part | Changes when... |
+|------|-------------------|
+| **MAJOR** | Breaking changes, incompatible API changes |
+| **MINOR** | New features added, backward-compatible |
+| **PATCH** | Bug fixes only, backward-compatible |
+
+Prefixes in `package.json`:
+- `^4.18.2` → accepts updates within the same **MAJOR** version (e.g. up to `<5.0.0`)
+- `~4.18.2` → accepts updates within the same **MINOR** version (e.g. up to `<4.19.0`)
+- `4.18.2` (no prefix) → locked to that **exact** version
+
+### ✅ nodemon
+A dev dependency that **watches project files** and automatically restarts the Node server whenever a file is saved — removes the need to manually stop/restart the server after every change.
+
+```bash
+npm install nodemon --save-dev
+```
+```json
+"scripts": {
+  "dev": "nodemon server.js"
+}
+```
+```bash
+npm run dev
+```
+
+### ✅ `app.use(express.json())`
+Built-in Express **middleware** that parses incoming requests with a `Content-Type: application/json` body and makes the parsed data available on `req.body`. Without it, `req.body` would be `undefined` for JSON requests.
+
+### 🧩 Putting it together — `app.js`
+
+```js
+const express = require("express");
+const documentRoutes = require("./routes/documents.routes");
+const app = express();
+
+app.use(express.json());   // parses incoming JSON bodies -> req.body
+
+app.get("/", (req, res) => {
+  res.json({
+    message: "Resume Api Running"
+  });
+});
+
+app.use("/api/documents", documentRoutes);   // mounts all document routes under /api/documents
+
+module.exports = app;
+```
+
+> 🔗 **Flow:** `server.js` imports this `app`, calls `app.listen(PORT)`, and every request to `/api/documents/...` gets forwarded to the `documentRoutes` router.
+
+---
+
 ## ✅ Key Takeaways
 
-Over these 12 days at **DivSocial**, I learned:
+Over these days at **DivSocial**, I learned:
 - 🌐 How the web works end-to-end — DNS → TCP → TLS → HTTP → Render
 - 🐞 Debugging with browser DevTools like a pro
 - 🏷️ HTML5 semantic structure & building a real resume from scratch
 - 🎨 CSS fundamentals — selectors, the box model, Flexbox, and Grid
 - ⚙️ JavaScript fundamentals — variables, functions, arrays, and array methods
 - 🌍 Backend/API basics — status codes, headers, query params, and statelessness
+- 🗄️ Browser storage — Cookies, Local Storage, Session Storage & IndexedDB, and HTTP vs HTTPS
+- 📦 Node.js tooling — npm, node_modules, package.json/package-lock.json, Semantic Versioning, nodemon, and Express middleware (`express.json()`)
 
 ---
 
