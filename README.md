@@ -736,6 +736,197 @@ module.exports = app;
 > 🔗 **Flow:** `server.js` imports this `app`, calls `app.listen(PORT)`, and every request to `/api/documents/...` gets forwarded to the `documentRoutes` router.
 
 ---
+# Day 24 – Internship Notes (DivSocial / Amrapali University)
+
+
+
+---
+
+## 🎯 What We Learned Today
+
+Today's session was based on the **MVC structure** (Model – View – Controller) of a Node.js backend. We saw how a request flows — **Route → Controller → Model → Database (data.json)** — and where and why **callback functions** are used along the way.
+
+---
+
+## 🔄 Callback Functions
+
+A callback function is a function that is **passed as an argument to another function**, and it gets called once that other function finishes its job.
+
+Node.js is mostly **asynchronous** in nature (e.g. file read/write, database calls, API calls). JavaScript doesn't wait for these operations to finish — it moves on to the next line of code. So we need a way to:
+
+- Run code *after* an operation completes
+- Handle the result or error properly
+- Keep execution order correct (non-blocking)
+
+**Example (from `db.js`):**
+
+```js
+function read() {
+  const text = fs.readFileSync(file, 'utf8');
+  return JSON.parse(text);
+}
+
+function write(data) {
+  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+```
+
+**Simple example of a callback:**
+
+```js
+function fetchData(callback) {
+  setTimeout(() => {
+    callback("Data received!");
+  }, 1000);
+}
+
+fetchData((result) => {
+  console.log(result); // "Data received!"
+});
+```
+
+> 👉 Without a callback, we can't guarantee that the result is used only after the data is actually available. This is the core concept of async programming.
+
+---
+
+## 🎛️ Controllers
+
+A **Controller** is the layer that:
+- Receives the incoming request (`req`)
+- Fetches/updates data by calling the Model
+- Sends the response (`res`) back to the client
+- Handles errors (via try/catch)
+
+The controller holds the **business logic** — it decides "what needs to be done," while "how data is stored/retrieved" is the Model's job.
+
+**Example (from `documentController.js`):**
+
+```js
+/**
+ * Retrieve the list of documents
+ * @param {*} req
+ * @param {*} res
+ */
+function list(req, res) {
+  try {
+    const documents = documentModel.findAll();
+    res.send({
+      success: true,
+      message: "Retrieve the list of documents.",
+      documents: documents,
+    });
+  } catch(error) {
+    console.log("error in list", error);
+    res.status(500).send({
+      success: false,
+      message: "Failed to retrieve the list of documents.",
+    });
+  }
+}
+```
+
+```js
+function retrieve(req, res) {
+  try {
+    const id = req.params.id;
+    const document = documentModel.findById(id);
+    res.send({
+      success: true,
+      message: "Hello from Gaurav!",
+      document
+    });
+  } catch(error) {
+    console.log("error in retrieve", error);
+    res.status(500).send({
+      success: false,
+      message: "Failed to retrieve the document.",
+    });
+  }
+}
+```
+
+> 👉 Using try/catch means that if an error occurs in the Model layer, the server won't crash — instead a proper error response (`status 500`) is sent back to the client.
+
+---
+
+## 🛣️ Routes
+
+**Routes** define:
+- Which **URL/endpoint** is being hit
+- Which **HTTP method** (`GET`, `POST`, `PUT`, `DELETE`) is being used
+- Which **controller function** should handle that request
+
+**Example structure:**
+
+```js
+// documentRoutes.js
+const router = require('express').Router();
+const documentController = require('../controllers/documentController');
+
+router.get('/documents', documentController.list);
+router.get('/documents/:id', documentController.retrieve);
+router.post('/documents', documentController.create);
+
+module.exports = router;
+```
+
+> 👉 Without routes, the server wouldn't know which code to run for which URL. It keeps the codebase **organized and maintainable**.
+
+---
+
+## 🏗️ Overall Flow (MVC Pattern)
+Client Request
+│
+▼
+Routes (documentRoutes.js)
+│   → decides which controller function to call
+▼
+Controller (documentController.js)
+│   → business logic, calls model, handles errors
+▼
+Model (documentModel.js)
+│   → calls db.js to read/write actual data
+▼
+Database (db.js → data.json)
+
+**Model layer example (`documentModel.js`):**
+
+```js
+/**
+ * @returns List of documents
+ */
+function findAll() {
+  const data = db.read();
+  return data.documents;
+}
+
+function findById(id) {
+  const data = db.read();
+  return data.documents.find(doc => doc.id === id);
+}
+```
+
+---
+
+## ✅ Key Takeaways
+
+Today at **DivSocial**, I learned:
+- 🔄 **Callback Functions** — how async operations in Node.js are handled, and why a function is passed as an argument to run code only after a task completes
+- 🎛️ **Controllers** — the layer that receives requests, calls the Model for data, and sends back responses (with proper try/catch error handling)
+- 🛣️ **Routes** — how a URL + HTTP method gets mapped to the right controller function, keeping the codebase organized
+- 🏗️ **MVC Flow** — the complete request lifecycle: `Route → Controller → Model → Database (data.json)`
+- 📁 **File Handling** — reading/writing JSON data using `fs.readFileSync` / `fs.writeFileSync` inside the Model layer
+
+| Layer | Responsibility |
+|-------|-----------------|
+| **Routes** | Maps a URL and HTTP method to the correct controller function |
+| **Controller** | Handles the request, calls the model to get data, sends the response |
+| **Model** | Directly interacts with the data (read/write) |
+| **Callback** | A way to run code after an async operation completes |
+
+---
+
+
 
 ## ✅ Key Takeaways
 
